@@ -1,0 +1,22 @@
+USE lesson3;
+
+SELECT COUNT(*) as total_rows
+FROM 
+    orders
+LEFT JOIN 
+    customers ON orders.customer_id = customers.id
+RIGHT JOIN 
+    employees ON orders.employee_id = employees.employee_id
+LEFT JOIN 
+    shippers ON orders.shipper_id = shippers.id
+RIGHT JOIN 
+    order_details ON orders.id = order_details.order_id
+LEFT JOIN 
+    products ON order_details.product_id = products.id
+RIGHT JOIN 
+    categories ON products.category_id = categories.id
+LEFT JOIN 
+    suppliers ON products.supplier_id = suppliers.id;
+
+
+Після використання комбінації LEFT JOIN і RIGHT JOIN кількість рядків у результаті залишилася такою ж — 518. Це означає, що всі таблиці мають повні відповідності між собою, і немає записів, які б залишалися без пар. У нашому випадку результат такий самий, як при INNER JOIN, бо дані пов’язані без пропусків.
